@@ -96,17 +96,18 @@ class DuitkuBaseController extends Controller
      * @param string $productDetail Keterangan detil produk
      * @param int $amount Jumlah nominal transaksi
      * @param string $paymentCode Metode Pembayaran
-     * @param string $shopeeUserHash Jika menggunakan ShopeePay
+     * @param string|null $shopeeUserHash Jika menggunakan ShopeePay
      * @param string $reference Nomor referensi transaksi dari DuitkuProcessor
+     * @param string|null $additionalParam
      */
     protected function onPaymentSuccess(
         string $orderId,
         string $productDetail,
         int $amount,
         string $paymentCode,
-        string $shopeeUserHash,
+        ?string $shopeeUserHash,
         string $reference,
-        string $additionalParam
+        ?string $additionalParam
     ): void
     {
         //
@@ -117,17 +118,18 @@ class DuitkuBaseController extends Controller
      * @param string $productDetail Keterangan detil produk
      * @param int $amount Jumlah nominal transaksi
      * @param string $paymentCode Metode Pembayaran
-     * @param string $shopeeUserHash Jika menggunakan ShopeePay
+     * @param string|null $shopeeUserHash Jika menggunakan ShopeePay
      * @param string $reference Nomor referensi transaksi dari DuitkuProcessor
+     * @param string|null $additionalParam
      */
     protected function onPaymentFailed(
         string $orderId,
         string $productDetail,
         int $amount,
         string $paymentCode,
-        string $shopeeUserHash,
+        ?string $shopeeUserHash,
         string $reference,
-        string $additionalParam
+        ?string $additionalParam
     ): void
     {
         //

@@ -12,7 +12,7 @@ A simple Duitku payment gateway library for Laravel.
       composer require royryando/laravel-duitku
 
 - Add the duitku service provider in config/app.php: (Laravel 5.5+ uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.)
-  ```injectablephp
+  ```php
   'providers' => [
     Royryando\Duitku\DuitkuServiceProvider::class
   ];
@@ -38,7 +38,7 @@ Call paymentMethods function from Duitku facade with the integer parameter is am
 `Duitku::paymentMethods(100000)`
 
 The return is an array of array, example:
-```injectablephp
+```php
 [
     ...
     [
@@ -69,7 +69,7 @@ Check invoice or inquiry status by calling
   
 The return is an array, example:
   
-```injectablephp
+```php
 [
   'reference' => 'D7999PJ38HNY7TSKHSGX', // reference code from Duitku
   'amount' => 100000,
@@ -83,7 +83,7 @@ Ref: [https://docs.duitku.com/api/id/#callback](https://docs.duitku.com/api/id/#
 
 - Create a new controller and extend `Royryando\Duitku\Http\Controllers\DuitkuBaseController`
 
-  ```injectablephp
+  ```php
   use Royryando\Duitku\Http\Controllers\DuitkuBaseController;
   
   class DuitkuController extends DuitkuBaseController
@@ -95,7 +95,7 @@ Ref: [https://docs.duitku.com/api/id/#callback](https://docs.duitku.com/api/id/#
   This controller will handle all callback requests from Duitku and store the success/failed payment function
 
 - Inside the controller, override `onPaymentSuccess` function. This function will triggered if receiving a successful transaction callback
-  ```injectablephp
+  ```php
   ...
       protected function onPaymentSuccess(
           string $orderId, string $productDetail, int $amount, string $paymentCode,
@@ -109,7 +109,7 @@ Ref: [https://docs.duitku.com/api/id/#callback](https://docs.duitku.com/api/id/#
 
 - Inside the controller, override `onPaymentFailed` function. This function will triggered if receiving a failed status from callback
 
-  ```injectablephp
+  ```php
   ...
       protected function onPaymentFailed(
           string $orderId, string $productDetail, int $amount, string $paymentCode,
@@ -123,7 +123,7 @@ Ref: [https://docs.duitku.com/api/id/#callback](https://docs.duitku.com/api/id/#
 
 - Add route in your application route web.php with the function of paymentCallback
 
-  ```injectablephp
+  ```php
   Route::post('callback/payment', [\App\Http\Controllers\DuitkuController::class, 'paymentCallback']);
   ```
   
@@ -131,7 +131,7 @@ Ref: [https://docs.duitku.com/api/id/#callback](https://docs.duitku.com/api/id/#
   
   Edit `App\Http\Middleware\VerifyCsrfToken.php`
 
-  ```injectablephp
+  ```php
   protected $except = [
       'callback/payment',
   ];

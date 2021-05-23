@@ -65,10 +65,10 @@ The return if success:
 [
   'success' => true,
   'reference' => 'D7999PJ38HNY7TSKHSGX',
-  'payment_url' => 'https://url.to.payment.example.com/,
+  'payment_url' => 'https://url.to.payment.example.com/',
   'va_number' => '0000123123123',
   'amount' => 100000,
-  'message' => 'SUCCESS' // Message is from Duitku
+  'message' => 'SUCCESS' // message from Duitku
 ]
 ```
 
@@ -76,7 +76,7 @@ The return if not success:
 ```php
 [
   'success' => false,
-  'message' => 'The selected payment channel not available' // Message is from Duitku
+  'message' => 'The selected payment channel not available' // message from Duitku
 ]
 ```
 

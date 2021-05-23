@@ -9,7 +9,7 @@ class DuitkuServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'./config/duitku.php' => config_path('duitku.php'),
+            __DIR__.'/config/duitku.php' => config_path('duitku.php'),
         ]);
     }
 

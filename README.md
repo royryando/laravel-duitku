@@ -60,6 +60,26 @@ Order Id, amount, payment method, product name, customer name, cutomer email, ex
   
 `Duitku::createInvoice('ORDER_ID', 100000, 'M1', 'Product Name', 'John Doe', 'john@example.com', 120);`
 
+The return if success:
+```php
+[
+  'success' => true,
+  'reference' => 'D7999PJ38HNY7TSKHSGX',
+  'payment_url' => 'https://url.to.payment.example.com/,
+  'va_number' => '0000123123123',
+  'amount' => 100000,
+  'message' => 'SUCCESS' // Message is from Duitku
+]
+```
+
+The return if not success:
+```php
+[
+  'success' => false,
+  'message' => 'The selected payment channel not available' // Message is from Duitku
+]
+```
+
 ### Check Invoice Status
 Ref: [https://docs.duitku.com/api/id/#check-transaction](https://docs.duitku.com/api/id/#check-transaction)
 

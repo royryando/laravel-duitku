@@ -77,10 +77,10 @@ class DuitkuProcessor
                 $returnMethod = [];
                 foreach ($methods as $method) {
                     array_push($returnMethod, [
-                        'code' => $method['paymentMethod'],
-                        'name' => $method['paymentName'],
-                        'image' => $method['paymentImage'],
-                        'fee' => (int)$method['totalFee']
+                        'code' => $method['paymentMethod'] ?? null,
+                        'name' => $method['paymentName'] ?? null,
+                        'image' => $method['paymentImage'] ?? null,
+                        'fee' => (int)($method['totalFee'] ?? 0)
                     ]);
                 }
                 return $returnMethod;
@@ -161,11 +161,11 @@ class DuitkuProcessor
                 // SUCCESS
                 return [
                     'success' => true,
-                    'reference' => $response['reference'],
-                    'payment_url' => $response['paymentUrl'],
-                    'va_number' => $response['vaNumber'],
-                    'amount' => (int)$response['amount'],
-                    'message' => $response['statusMessage']
+                    'reference' => $response['reference'] ?? null,
+                    'payment_url' => $response['paymentUrl'] ?? null,
+                    'va_number' => $response['vaNumber'] ?? null,
+                    'amount' => (int)($response['amount'] ?? 0),
+                    'message' => $response['statusMessage'] ?? null
                 ];
             }
             return [
@@ -220,10 +220,10 @@ class DuitkuProcessor
             $response = json_decode($response->getBody(), true);
 
             return [
-                'reference' => $response['reference'],
-                'amount' => (int)$response['amount'],
-                'message' => $response['statusMessage'],
-                'code' => $response['statusCode'],
+                'reference' => $response['reference'] ?? null,
+                'amount' => (int)($response['amount'] ?? 0),
+                'message' => $response['statusMessage'] ?? null,
+                'code' => $response['statusCode'] ?? null,
             ];
         } catch (RequestException $ex) {
             if (str_contains($ex->getMessage(), 'Invalid Signature')) {
